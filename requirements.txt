@@ -1,0 +1,17 @@
+# MockPilot-CLI
+# Lightweight Terminal API Mock Server Intelligent Engine
+# 轻量级终端API Mock服务器智能引擎
+#
+# Zero Dependencies - Pure Python Standard Library
+# 零依赖 - 纯Python标准库实现
+#
+# No external dependencies required!
+# 无需安装任何外部依赖！
+
+# Optional: For enhanced terminal UI (not required)
+# 可选：增强终端界面（非必需）
+# rich>=13.0.0
+
+# Optional: For YAML config support (not required)
+# 可选：YAML配置支持（非必需）
+# PyYAML>=6.0

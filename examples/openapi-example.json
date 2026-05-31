@@ -1,0 +1,104 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "E-Commerce API",
+    "version": "1.0.0",
+    "description": "Sample OpenAPI spec for MockPilot"
+  },
+  "paths": {
+    "/products": {
+      "get": {
+        "summary": "List products",
+        "responses": {
+          "200": {
+            "description": "List of products",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "products": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {"type": "integer"},
+                      "name": {"type": "string"},
+                      "price": {"type": "number"},
+                      "category": {"type": "string"},
+                      "inStock": {"type": "boolean"}
+                    }
+                  }
+                },
+                "total": {"type": "integer"}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create product",
+        "responses": {
+          "201": {
+            "description": "Product created",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {"type": "integer"},
+                "message": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "summary": "Get product by ID",
+        "responses": {
+          "200": {
+            "description": "Product details",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {"type": "integer"},
+                "name": {"type": "string"},
+                "description": {"type": "string"},
+                "price": {"type": "number"},
+                "category": {"type": "string"},
+                "inStock": {"type": "boolean"},
+                "createdAt": {"type": "string", "format": "date-time"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders": {
+      "get": {
+        "summary": "List orders",
+        "responses": {
+          "200": {
+            "description": "List of orders",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "orders": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {"type": "string", "format": "uuid"},
+                      "customerName": {"type": "string"},
+                      "total": {"type": "number"},
+                      "status": {"type": "string"},
+                      "createdAt": {"type": "string", "format": "date-time"}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

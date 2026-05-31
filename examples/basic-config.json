@@ -1,0 +1,251 @@
+{
+  "cors": {
+    "enabled": true
+  },
+  "defaultResponse": {
+    "status": 404,
+    "body": {
+      "error": "Not Found",
+      "message": "The requested resource was not found"
+    }
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "response": {
+        "status": 200,
+        "body": {
+          "status": "healthy",
+          "version": "1.0.0",
+          "timestamp": "{{$datetime}}"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/users",
+      "response": {
+        "status": 200,
+        "headers": {
+          "X-Total-Count": "50"
+        },
+        "body": {
+          "data": [
+            {
+              "id": "{{$uuid}}",
+              "name": "{{$name}}",
+              "email": "{{$email}}",
+              "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed={{name}}",
+              "role": "admin",
+              "isActive": true,
+              "createdAt": "{{$datetime}}"
+            },
+            {
+              "id": "{{$uuid}}",
+              "name": "{{$name}}",
+              "email": "{{$email}}",
+              "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed={{name}}",
+              "role": "user",
+              "isActive": "{{$bool}}",
+              "createdAt": "{{$datetime}}"
+            },
+            {
+              "id": "{{$uuid}}",
+              "name": "{{$name}}",
+              "email": "{{$email}}",
+              "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed={{name}}",
+              "role": "user",
+              "isActive": "{{$bool}}",
+              "createdAt": "{{$datetime}}"
+            }
+          ],
+          "meta": {
+            "page": 1,
+            "limit": 10,
+            "total": 50
+          }
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/users/:id",
+      "response": {
+        "status": 200,
+        "body": {
+          "id": "{{$uuid}}",
+          "name": "{{$name}}",
+          "email": "{{$email}}",
+          "phone": "{{$phone}}",
+          "company": "{{$company}}",
+          "bio": "{{$lorem}}",
+          "website": "https://{{$word}}.com",
+          "location": "{{$word}}, {{$word}}",
+          "social": {
+            "twitter": "@{{$word}}",
+            "github": "{{$word}}",
+            "linkedin": "in/{{$word}}"
+          },
+          "settings": {
+            "theme": "{{$choice([\"light\", \"dark\", \"system\"])}}",
+            "notifications": "{{$bool}}",
+            "language": "{{$choice([\"en\", \"zh\", \"ja\", \"es\"])}}"
+          },
+          "createdAt": "{{$datetime}}",
+          "updatedAt": "{{$datetime}}"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/users",
+      "response": {
+        "status": 201,
+        "headers": {
+          "Location": "/api/users/{{$uuid}}"
+        },
+        "body": {
+          "id": "{{$uuid}}",
+          "message": "User created successfully",
+          "timestamp": "{{$datetime}}"
+        }
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/users/:id",
+      "response": {
+        "status": 200,
+        "body": {
+          "id": "{{$uuid}}",
+          "message": "User updated successfully",
+          "timestamp": "{{$datetime}}"
+        }
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/users/:id",
+      "response": {
+        "status": 204,
+        "body": {}
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/products",
+      "response": {
+        "status": 200,
+        "body": {
+          "products": [
+            {
+              "id": "{{$int(1000)}}",
+              "name": "Premium {{$word}}",
+              "description": "{{$sentence}}",
+              "price": "{{$float(10, 500)}}",
+              "currency": "USD",
+              "category": "{{$choice([\"electronics\", \"clothing\", \"food\", \"books\"])}}",
+              "inStock": "{{$bool}}",
+              "rating": "{{$float(1, 5)}}",
+              "reviews": "{{$int(0, 1000)}}",
+              "sku": "SKU-{{$int(10000, 99999)}}",
+              "tags": ["{{$word}}", "{{$word}}", "{{$word}}"]
+            },
+            {
+              "id": "{{$int(1000)}}",
+              "name": "Basic {{$word}}",
+              "description": "{{$sentence}}",
+              "price": "{{$float(5, 200)}}",
+              "currency": "USD",
+              "category": "{{$choice([\"electronics\", \"clothing\", \"food\", \"books\"])}}",
+              "inStock": "{{$bool}}",
+              "rating": "{{$float(1, 5)}}",
+              "reviews": "{{$int(0, 500)}}",
+              "sku": "SKU-{{$int(10000, 99999)}}",
+              "tags": ["{{$word}}", "{{$word}}"]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/posts",
+      "response": {
+        "status": 200,
+        "body": {
+          "posts": [
+            {
+              "id": "{{$uuid}}",
+              "title": "{{$sentence(5)}}",
+              "content": "{{$lorem(50)}}",
+              "author": {
+                "id": "{{$uuid}}",
+                "name": "{{$name}}"
+              },
+              "tags": ["{{$word}}", "{{$word}}", "{{$word}}"],
+              "likes": "{{$int(0, 10000)}}",
+              "comments": "{{$int(0, 500)}}",
+              "isPublished": "{{$bool}}",
+              "publishedAt": "{{$datetime}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/login",
+      "response": {
+        "status": 200,
+        "body": {
+          "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.{{$word}}.{{$word}}",
+          "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.{{$word}}.{{$word}}",
+          "user": {
+            "id": "{{$uuid}}",
+            "name": "{{$name}}",
+            "email": "{{$email}}"
+          },
+          "expiresIn": 3600
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/search",
+      "queryParams": {
+        "q": "test"
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "query": "test",
+          "results": [
+            {
+              "id": "{{$uuid}}",
+              "title": "Result for {{$word}}",
+              "description": "{{$sentence}}",
+              "url": "https://example.com/{{$word}}",
+              "score": "{{$float(0, 1)}}"
+            }
+          ],
+          "total": "{{$int(10, 1000)}}",
+          "page": 1
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/delayed",
+      "delay": 2000,
+      "response": {
+        "status": 200,
+        "body": {
+          "message": "This response was delayed by 2 seconds",
+          "timestamp": "{{$datetime}}"
+        }
+      }
+    }
+  ]
+}

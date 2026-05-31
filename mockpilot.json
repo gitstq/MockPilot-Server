@@ -1,0 +1,99 @@
+{
+  "cors": {
+    "enabled": true
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/products",
+      "response": {
+        "status": 200,
+        "body": {
+          "products": [
+            {
+              "id": "{{$int}}",
+              "name": "{{$word}}",
+              "price": "{{$float}}",
+              "category": "{{$word}}",
+              "inStock": "{{$bool}}"
+            },
+            {
+              "id": "{{$int}}",
+              "name": "{{$word}}",
+              "price": "{{$float}}",
+              "category": "{{$word}}",
+              "inStock": "{{$bool}}"
+            },
+            {
+              "id": "{{$int}}",
+              "name": "{{$word}}",
+              "price": "{{$float}}",
+              "category": "{{$word}}",
+              "inStock": "{{$bool}}"
+            }
+          ],
+          "total": "{{$int}}"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/products",
+      "response": {
+        "status": 200,
+        "body": {
+          "id": "{{$int}}",
+          "message": "{{$word}}"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/products/{id}",
+      "response": {
+        "status": 200,
+        "body": {
+          "id": "{{$int}}",
+          "name": "{{$word}}",
+          "description": "{{$word}}",
+          "price": "{{$float}}",
+          "category": "{{$word}}",
+          "inStock": "{{$bool}}",
+          "createdAt": "{{$datetime}}"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/orders",
+      "response": {
+        "status": 200,
+        "body": {
+          "orders": [
+            {
+              "id": "{{$uuid}}",
+              "customerName": "{{$word}}",
+              "total": "{{$float}}",
+              "status": "{{$word}}",
+              "createdAt": "{{$datetime}}"
+            },
+            {
+              "id": "{{$uuid}}",
+              "customerName": "{{$word}}",
+              "total": "{{$float}}",
+              "status": "{{$word}}",
+              "createdAt": "{{$datetime}}"
+            },
+            {
+              "id": "{{$uuid}}",
+              "customerName": "{{$word}}",
+              "total": "{{$float}}",
+              "status": "{{$word}}",
+              "createdAt": "{{$datetime}}"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
